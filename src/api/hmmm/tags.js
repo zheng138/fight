@@ -13,6 +13,7 @@ import { createAPI } from '@/utils/request'
 export const list = data => createAPI('/tags', 'get', data)
 
 // 标签简单列表
+// data传递的数据从何而来，如何知道传递的什么数据（答：到yapi数据接口确认）
 export const simple = data => createAPI('/tags/simple', 'get', data)
 
 // 标签详情

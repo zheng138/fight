@@ -1,4 +1,4 @@
-import {createAPI} from '@/utils/request'
+import { createAPI } from '@/utils/request'
 
 export const list = data => createAPI('/users/', 'get', data)
 export const simple = data => createAPI('/users/simple', 'get', data)
