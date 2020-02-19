@@ -54,7 +54,12 @@
         <el-row :gutter="20">
           <el-col :span="6">
             城市:
-            <el-select style="width:85px" v-model="searchForm.province" placeholder="选城市"></el-select>
+            <el-select style="width:85px" v-model="searchForm.province" placeholder="选城市">
+              <!-- v-for='item in data成员/methods成员' -->
+              <!-- methods成员在模板中也可以使用，注意设置( )即可
+              {{provin()}}-->
+              <el-option v-for="item in provin()" :key="item" :value="item" :label="item"></el-option>
+            </el-select>
             <el-select style="width:85px" v-model="searchForm.citys" placeholder="选地区"></el-select>
           </el-col>
           <!-- -------------------------------------- 关键字--------------------------------------------------------- -->
@@ -125,6 +130,7 @@
 
 <script>
 // 导入城市 区县的api
+import { provinces, citys } from '@/api/hmmm/citys.js'
 // 输入二级目录的api
 import { simple as directorysSimple } from '@/api/hmmm/directorys.js'
 // 导入录入人的api
@@ -145,8 +151,6 @@ export default {
   name: 'QuestionsList',
   data() {
     return {
-      // // 城市下拉列表
-      // provinceList: [],
       // 方向下拉列表
       directionList,
       // 录入二级目录下拉列表
@@ -187,8 +191,12 @@ export default {
     this.getCreatorIDList()
     // 录入二级目录
     this.getCatalogIDList()
+    // // 城市
+    // this.provin()
   },
   methods: {
+    // 接收城市的函数
+    provin: provinces,
     // 导入二级目录下拉列表的方法
     async getCatalogIDList() {
       let result = await directorysSimple()
